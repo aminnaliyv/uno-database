@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Color Match</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== SETUP SCREEN ===== -->
+  <section id="setup" class="screen">
+    <div class="panel setup-panel">
+      <h1 class="logo">Color <span>Match</span></h1>
+      <p class="tagline">Match the top card by <b>color</b> or <b>value</b>. First to empty their hand wins.</p>
+
+      <div class="field">
+        <span class="label">Players</span>
+        <div class="segmented" id="count-buttons">
+          <button type="button" data-count="2">2</button>
+          <button type="button" data-count="3" class="active">3</button>
+          <button type="button" data-count="4">4</button>
+        </div>
+      </div>
+
+      <div id="player-rows" class="player-rows"></div>
+
+      <button type="button" id="start-btn" class="btn primary">Start game</button>
+
+      <details class="rules">
+        <summary>Rules</summary>
+        <ul>
+          <li>Each player starts with 5 cards.</li>
+          <li>Play a card that matches the top card's color or value.</li>
+          <li>Can't (or don't want to) play? Click the draw pile — you take one card and your turn ends.</li>
+          <li><b>Skip</b> skips the next player. <b>Reverse</b> flips the turn direction (acts like Skip with 2 players). <b>Draw Two</b> makes the next player draw 2 and lose their turn.</li>
+          <li>With more than one human, pass the device when asked — your cards stay hidden until you click.</li>
+        </ul>
+      </details>
+    </div>
+  </section>
+
+  <!-- ===== GAME SCREEN ===== -->
+  <section id="game" class="screen hidden">
+    <header class="topbar">
+      <div class="logo small">Color <span>Match</span></div>
+      <button type="button" id="quit-btn" class="btn ghost">New game</button>
+    </header>
+
+    <div class="layout">
+      <main class="table">
+        <!-- Turn order: the circular doubly linked list -->
+        <div class="circle-wrap">
+          <div id="direction" class="direction"></div>
+          <ol id="circle" class="circle"></ol>
+        </div>
+
+        <div class="center">
+          <div class="pile">
+            <button type="button" id="draw-pile" class="card back" aria-label="Draw a card">
+              <span class="back-logo">CM</span>
+            </button>
+            <div class="pile-label" id="draw-count"></div>
+          </div>
+          <div class="pile">
+            <div id="discard" class="discard"></div>
+            <div class="pile-label">Discard</div>
+          </div>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="hand-area">
+          <div class="hand-title" id="hand-title"></div>
+          <div id="hand" class="hand"></div>
+        </div>
+      </main>
+
+      <aside class="log-panel">
+        <h2>Game log</h2>
+        <ol id="log" class="log"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ===== OVERLAY (pass device / winner) ===== -->
+  <div id="overlay" class="overlay hidden">
+    <div class="panel overlay-panel">
+      <h2 id="overlay-title"></h2>
+      <p id="overlay-text"></p>
+      <div class="overlay-buttons">
+        <button type="button" id="overlay-btn" class="btn primary"></button>
+        <button type="button" id="overlay-btn2" class="btn ghost hidden"></button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>

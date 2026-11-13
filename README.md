@@ -17,6 +17,19 @@ python card_game.py
 
 No extra packages needed.
 
+## Browser version
+
+Open `web/index.html` in any browser. No install or server is needed.
+
+- Clickable cards: cards you can play lift on hover, and the rest are dimmed.
+- Click the draw pile to draw (your turn ends, same as the console game).
+- Each of the 2–4 seats can be a **Human** or a **Computer** player.
+- With more than one human, a "pass the device" screen hides each player's cards between turns.
+- The turn-order strip shows the circular list and its current direction.
+
+`web/game.js` uses the same data structures as `card_game.py`, rewritten in JavaScript
+(`CardStack`, `Hand`, `PlayerCircle`). `web/ui.js` only draws the game and handles clicks.
+
 ## Data structures
 
 | Game part | Data structure | Class |
@@ -37,7 +50,3 @@ No extra packages needed.
 | Move to next player, reverse | O(1) |
 | Add a card to a hand | O(1) |
 | Find / remove a card in a hand | O(n) |
-
-## Planned
-
-- Browser version (JavaScript) with clickable cards.
